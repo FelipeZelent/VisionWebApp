@@ -18,17 +18,26 @@
             <button type="submit">Cadastrar</button>
         </form>
         <h2>Lista de Pessoas</h2>
-        <ul>
-            {% for person in persons %}
-            <li>
-                <span>{{ person.name }}</span>
-                <div>
-                    <a href="{{ url_for('static', filename='uploads/' + person.photo) }}">Foto</a> | 
-                    <a href="{{ url_for('static', filename='uploads/' + person.document) }}">Documento</a>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Foto</th>
+                    <th>Documento</th>
+                    <th>Descrição da Imagem</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in persons %}
+                <tr>
+                    <td>{{ person.name }}</td>
+                    <td><a href="{{ url_for('static', filename='uploads/' + person.photo) }}">Ver Foto</a></td>
+                    <td><a href="{{ url_for('static', filename='uploads/' + person.document) }}">Ver Documento</a></td>
+                    <td>{{ person.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
